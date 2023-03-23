@@ -11,6 +11,16 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+DROP TABLE if exists dim_billete CASCADE;
+DROP TABLE if exists dim_date CASCADE;
+DROP TABLE if exists dim_time CASCADE;
+DROP TABLE if exists dim_estacion CASCADE;
+DROP TABLE if exists dim_pasajero CASCADE;
+DROP TABLE if exists dim_trayecto CASCADE;
+DROP TABLE if exists dim_viaje CASCADE;
+DROP TABLE if exists dim_viaje_trayecto_bridge CASCADE;
+DROP TABLE if exists fact_venta CASCADE;
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
