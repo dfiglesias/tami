@@ -113,7 +113,7 @@ CREATE TABLE `dim_time` (
 
 CREATE TABLE `dim_lugar` (
   `LUGAR_KEY` int(11) NOT NULL,
-  `ID_LUGAR` decimal(20,0) NOT NULL,
+  `ID_LUGAR` bigint(20) NOT NULL,
   `VALIDO_DESDE` datetime NOT NULL,
   `VALIDO_HASTA` datetime NOT NULL,
   `VERSION` varchar(20) NOT NULL,
