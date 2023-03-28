@@ -32,15 +32,12 @@ CREATE TABLE `dim_billete` (
   `ID_BILLETE` bigint(20) NOT NULL,
   `BILLETE_ULTIMA_ACTUALIZACION` datetime NOT NULL,
   `FECHA_COMPRA` date NOT NULL,
-  `NUM_PARADAS` smallint(6) NOT NULL,
   `PRECIO` float NOT NULL,
   `COCHE` tinyint(4) NOT NULL,
   `PLAZA` varchar(3) NOT NULL,
   `CLASE` varchar(15) NOT NULL,
   `MASCOTA` tinyint(1) NOT NULL,
-  `BONO` varchar(15) DEFAULT NULL,
-  `ORIGEN` varchar(16) NOT NULL,
-  `DESTINO` varchar(16) NOT NULL
+  `BONO` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -66,13 +63,14 @@ CREATE TABLE `dim_date` (
 CREATE TABLE `dim_estacion` (
   `ESTACION_KEY` int(11) NOT NULL,
   `ESTACION_ULTIMA_ACTUALIZACION` datetime NOT NULL,
-  `ESTACION_VALIDO_DESDE` datetime NOT NULL,
-  `ESTACION_VALIDO_HASTA` datetime NOT NULL,
   `ESTACION_VERSION` varchar(20) NOT NULL,
-  `ID_ESTACION` bigint(20) NOT NULL,
+  `VALIDO_DESDE` datetime NOT NULL,
+  `VALIDO_HASTA` datetime NOT NULL,
   `NOMBRE` varchar(25) NOT NULL,
   `CIUDAD` varchar(20) NOT NULL,
-  `TIPO` varchar(15) NOT NULL
+  `TIPO_CIUDAD` varchar(15) NOT NULL,
+  `LATITUD` varchar(20) NOT NULL,
+  `LONGITUD` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -113,15 +111,16 @@ CREATE TABLE `dim_time` (
 -- Estructura de tabla para la tabla `dim_trayecto`
 --
 
-CREATE TABLE `dim_trayecto` (
-  `TRAYECTO_KEY` int(11) NOT NULL,
-  `TRAYECTO_VALIDO_DESDE` datetime NOT NULL,
-  `TRAYECTO_VALIDO_HASTA` datetime NOT NULL,
-  `TRAYECTO_VERSION` varchar(20) NOT NULL,
-  `ID_TRAYECTO` decimal(20,0) NOT NULL,
-  `C_ORIGEN` varchar(20) NOT NULL,
-  `C_DESTINO` varchar(20) NOT NULL,
-  `KILOMETROS` bigint(20) NOT NULL
+CREATE TABLE `dim_lugar` (
+  `LUGAR_KEY` int(11) NOT NULL,
+  `ID_LUGAR` decimal(20,0) NOT NULL,
+  `VALIDO_DESDE` datetime NOT NULL,
+  `VALIDO_HASTA` datetime NOT NULL,
+  `VERSION` varchar(20) NOT NULL,
+  `NOMBRE` varchar(25) NOT NULL,
+  `CIUDAD` varchar(20) NOT NULL,
+  `TIPO_CIUDAD` varchar(15) NOT NULL
+  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -132,12 +131,11 @@ CREATE TABLE `dim_trayecto` (
 
 CREATE TABLE `dim_viaje` (
   `VIAJE_KEY` int(11) NOT NULL,
-  `VIAJE_ULTIMA_ACTUALIZACION` datetime NOT NULL,
   `ID_VIAJE` bigint(20) NOT NULL,
-  `ID_TRAYECTO` decimal(20,0) NOT NULL,
-  `NUM_BILLETES_V` smallint(6) NOT NULL,
-  `FECHA_SALIDA` date NOT NULL,
-  `FECHA_LLEGADA` date NOT NULL
+  `ID_ESTACION` decimal(20,0) NOT NULL,
+  `VIAJE_ULTIMA_ACTUALIZACION` datetime NOT NULL,
+  `KILOMETROS_TOTALES` bigint(20) NOT NULL,
+  `NUM_PARADAS` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -146,9 +144,9 @@ CREATE TABLE `dim_viaje` (
 -- Estructura de tabla para la tabla `dim_viaje_trayecto_bridge`
 --
 
-CREATE TABLE `dim_viaje_trayecto_bridge` (
+CREATE TABLE `dim_viaje_estacion_bridge` (
   `VIAJE_KEY` int(11) NOT NULL,
-  `TRAYECTO_KEY` int(11) NOT NULL
+  `ESTACION_KEY` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -161,7 +159,7 @@ CREATE TABLE `fact_venta` (
   `ID_VENTA` bigint(20) NOT NULL,
   `VIAJE_KEY` int(11) NOT NULL,
   `PASAJERO_KEY` int(11) NOT NULL,
-  `ESTACION_KEY` int(11) NOT NULL,
+  `LUGAR_KEY` int(11) NOT NULL,
   `DATE_KEY` int(11) NOT NULL,
   `TIME_KEY` int(11) NOT NULL,
   `BILLETE_KEY` int(11) NOT NULL,
@@ -209,8 +207,8 @@ ALTER TABLE `dim_time`
 --
 -- Indices de la tabla `dim_trayecto`
 --
-ALTER TABLE `dim_trayecto`
-  ADD PRIMARY KEY (`TRAYECTO_KEY`);
+ALTER TABLE `dim_lugar`
+  ADD PRIMARY KEY (`LUGAR_KEY`);
 
 --
 -- Indices de la tabla `dim_viaje`
@@ -221,9 +219,9 @@ ALTER TABLE `dim_viaje`
 --
 -- Indices de la tabla `dim_viaje_trayecto_bridge`
 --
-ALTER TABLE `dim_viaje_trayecto_bridge`
-  ADD PRIMARY KEY (`VIAJE_KEY`,`TRAYECTO_KEY`),
-  ADD KEY `FK_TRAYECTO_KEY` (`TRAYECTO_KEY`);
+ALTER TABLE `dim_viaje_estacion_bridge`
+  ADD PRIMARY KEY (`VIAJE_KEY`,`ESTACION_KEY`),
+  ADD KEY `FK_ESTACION_KEY` (`ESTACION_KEY`);
 
 --
 -- Indices de la tabla `fact_venta`
@@ -231,7 +229,7 @@ ALTER TABLE `dim_viaje_trayecto_bridge`
 ALTER TABLE `fact_venta`
   ADD KEY `FK_DIM_VIAJE` (`VIAJE_KEY`),
   ADD KEY `FK_DIM_PASAJERO` (`PASAJERO_KEY`),
-  ADD KEY `FK_DIM_ESTACION` (`ESTACION_KEY`),
+  ADD KEY `FK_DIM_LUGAR` (`LUGAR_KEY`),
   ADD KEY `FK_DIM_DATE` (`DATE_KEY`),
   ADD KEY `FK_DIM_TIME` (`TIME_KEY`);
 
@@ -242,8 +240,8 @@ ALTER TABLE `fact_venta`
 --
 -- Filtros para la tabla `dim_viaje_trayecto_bridge`
 --
-ALTER TABLE `dim_viaje_trayecto_bridge`
-  ADD CONSTRAINT `FK_TRAYECTO_KEY` FOREIGN KEY (`TRAYECTO_KEY`) REFERENCES `dim_trayecto` (`TRAYECTO_KEY`) ON DELETE CASCADE,
+ALTER TABLE `dim_viaje_estacion_bridge`
+  ADD CONSTRAINT `FK_ESTACION_KEY` FOREIGN KEY (`ESTACION_KEY`) REFERENCES `dim_estacion` (`ESTACION_KEY`) ON DELETE CASCADE,
   ADD CONSTRAINT `FK_VIAJE_KEY` FOREIGN KEY (`VIAJE_KEY`) REFERENCES `dim_viaje` (`VIAJE_KEY`) ON DELETE CASCADE;
 
 --
@@ -251,7 +249,7 @@ ALTER TABLE `dim_viaje_trayecto_bridge`
 --
 ALTER TABLE `fact_venta`
   ADD CONSTRAINT `FK_DIM_DATE` FOREIGN KEY (`DATE_KEY`) REFERENCES `dim_date` (`DATE_KEY`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_DIM_ESTACION` FOREIGN KEY (`ESTACION_KEY`) REFERENCES `dim_estacion` (`ESTACION_KEY`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_DIM_LUGAR` FOREIGN KEY (`LUGAR_KEY`) REFERENCES `dim_lugar` (`LUGAR_KEY`) ON DELETE CASCADE,
   ADD CONSTRAINT `FK_DIM_PASAJERO` FOREIGN KEY (`PASAJERO_KEY`) REFERENCES `dim_pasajero` (`PASAJERO_KEY`) ON DELETE CASCADE,
   ADD CONSTRAINT `FK_DIM_TIME` FOREIGN KEY (`TIME_KEY`) REFERENCES `dim_time` (`TIME_KEY`) ON DELETE CASCADE,
   ADD CONSTRAINT `FK_DIM_VIAJE` FOREIGN KEY (`VIAJE_KEY`) REFERENCES `dim_viaje` (`VIAJE_KEY`) ON DELETE CASCADE;
