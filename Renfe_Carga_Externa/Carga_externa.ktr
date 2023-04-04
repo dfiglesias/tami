@@ -441,7 +441,7 @@
     <server>localhost</server>
     <type>MARIADB</type>
     <access>Native</access>
-    <database>renfe</database>
+    <database>renfe_dimensiones</database>
     <port>3306</port>
     <username>tami</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ce10ca93a2d3</password>
@@ -497,75 +497,26 @@
   </connection>
   <order>
     <hop>
+      <from>Generar filas</from>
+      <to>Añadir secuencia</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>CSV file input</from>
+      <to>Juntar filas (producto cartesiano)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Añadir secuencia</from>
+      <to>Juntar filas (producto cartesiano)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Juntar filas (producto cartesiano)</from>
       <to>Salida Tabla</to>
       <enabled>Y</enabled>
     </hop>
   </order>
-  <step>
-    <name>Salida Tabla</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>Renfe</connection>
-    <schema>renfe</schema>
-    <table>externa</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>LATITUD</column_name>
-        <stream_name>LATITUD</stream_name>
-      </field>
-      <field>
-        <column_name>LONGITUD</column_name>
-        <stream_name>LONGITUD</stream_name>
-      </field>
-      <field>
-        <column_name>EXTERNO_KEY</column_name>
-        <stream_name>ï»¿ CÃ“DIGO</stream_name>
-      </field>
-      <field>
-        <column_name>NOMBRE</column_name>
-        <stream_name>DESCRIPCION</stream_name>
-      </field>
-      <field>
-        <column_name>CIUDAD</column_name>
-        <stream_name>POBLACION</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>480</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>CSV file input</name>
     <type>CsvInput</type>
@@ -577,11 +528,11 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>C:\Users\usuario\Downloads\listado-estaciones-completo.csv</filename>
+    <filename>C:/Users/Xavi/Documents/GitHub/tami/Renfe_Carga_Externa/Listado_Estaciones.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
-    <separator>;</separator>
+    <separator>,</separator>
     <enclosure>"</enclosure>
     <header>Y</header>
     <buffer_size>50000</buffer_size>
@@ -594,7 +545,7 @@
     <fields>
       <field>
         <name>ï»¿ CÃ“DIGO</name>
-        <type>Integer</type>
+        <type>String</type>
         <format>#</format>
         <currency>€</currency>
         <decimal>,</decimal>
@@ -723,7 +674,199 @@
       </output>
     </remotesteps>
     <GUI>
+      <xloc>256</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Salida Tabla</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Renfe</connection>
+    <schema>renfe</schema>
+    <table>externa</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>ï»¿ CÃ“DIGO</column_name>
+        <stream_name>id_lugar</stream_name>
+      </field>
+      <field>
+        <column_name>DESCRIPCION</column_name>
+        <stream_name>nombre</stream_name>
+      </field>
+      <field>
+        <column_name>LATITUD</column_name>
+        <stream_name>LATITUD</stream_name>
+      </field>
+      <field>
+        <column_name>LONGITUD</column_name>
+        <stream_name>LONGITUD</stream_name>
+      </field>
+      <field>
+        <column_name>POBLACION</column_name>
+        <stream_name>ciudad</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>576</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Generar filas</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>lugar_key</name>
+        <type>integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>tipo_ciudad</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>costa</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <limit>15000</limit>
+    <never_ending>N</never_ending>
+    <interval_in_ms>5000</interval_in_ms>
+    <row_time_field>now</row_time_field>
+    <last_time_field>FiveSecondsAgo</last_time_field>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
       <xloc>304</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Añadir secuencia</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>lugar_key</valuename>
+    <use_database>N</use_database>
+    <connection>Renfe</connection>
+    <schema/>
+    <seqname>SEQ_</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name/>
+    <start_at>1</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999</max_value>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Juntar filas (producto cartesiano)</name>
+    <type>JoinRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <cache_size>500</cache_size>
+    <main/>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue/>
+        <function>=</function>
+        <rightvalue/>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
