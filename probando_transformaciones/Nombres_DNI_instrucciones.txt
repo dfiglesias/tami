@@ -1,0 +1,8 @@
+Daniel Jorge Fernández Iglesias		45907447E
+Xavier Iglesias Casal			45906717M
+Carlos Piñeiro García			35488223M
+
+Para conectarse con la base de datos usamos un usuario llamado tami y su contraseña es tami
+Utilizamos xampp en todo momento, cargar los esquemas y los datos de la base de datos de "renfe"
+original. Con esta configuración el job debería cargar correctamente todos los datos en la base
+de datos "renfe_dimensiones".
