@@ -430,10 +430,115 @@
     <created_date>2023/04/12 18:24:41.503</created_date>
     <modified_user>-</modified_user>
     <modified_date>2023/04/12 18:24:41.503</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>Conseguir la última actualización del pasajero</note>
+      <xloc>48</xloc>
+      <yloc>16</yloc>
+      <width>252</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Extraer todos los pasajeros de la base de datos</note>
+      <xloc>48</xloc>
+      <yloc>112</yloc>
+      <width>253</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Calculo de la edad en base a su fecha de nacimiento</note>
+      <xloc>576</xloc>
+      <yloc>160</yloc>
+      <width>286</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Conseguir la key</note>
+      <xloc>192</xloc>
+      <yloc>208</yloc>
+      <width>97</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Insertar/actualizar la dimension</note>
+      <xloc>128</xloc>
+      <yloc>304</yloc>
+      <width>175</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <connection>
     <name>renfe</name>
@@ -555,33 +660,139 @@
   </connection>
   <order>
     <hop>
-      <from>Entrada Tabla</from>
-      <to>Entrada Tabla 2</to>
+      <from>max_dim_pasajero_ultima_actualizacion</from>
+      <to>Pasajero</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Entrada Tabla 2</from>
-      <to>Formula</to>
+      <from>Pasajero</from>
+      <to>Fecha actual</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Formula</from>
-      <to>Calculadora</to>
+      <from>Fecha actual</from>
+      <to>Calcular edad</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculadora</from>
-      <to>Añadir secuencia</to>
+      <from>Calcular edad</from>
+      <to>Pasajero_key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Añadir secuencia</from>
+      <from>Pasajero_key</from>
       <to>Insertar / Actualizar</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Entrada Tabla</name>
+    <name>Pasajero_key</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>key_valor</valuename>
+    <use_database>N</use_database>
+    <connection/>
+    <schema/>
+    <seqname>SEQ_</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name/>
+    <start_at>0</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999</max_value>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calcular edad</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>AÑO</field_name>
+      <calc_type>DATE_DIFF</calc_type>
+      <field_a>AÑO_ACTUAL</field_a>
+      <field_b>FECHA_NACIMIENTO</field_b>
+      <field_c/>
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>DIAS</field_name>
+      <calc_type>CONSTANT</calc_type>
+      <field_a>365</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>EDAD</field_name>
+      <calc_type>DIVIDE</calc_type>
+      <field_a>AÑO</field_a>
+      <field_b>DIAS</field_b>
+      <field_c/>
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>max_dim_pasajero_ultima_actualizacion</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -624,7 +835,7 @@ FROM	dim_pasajero
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_ES</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -638,13 +849,13 @@ FROM	dim_pasajero
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
-      <yloc>80</yloc>
+      <xloc>352</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Entrada Tabla 2</name>
+    <name>Pasajero</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -667,7 +878,7 @@ FROM renfe.pasajero
 WHERE ultima_actualizacion > ?
 </sql>
     <limit>0</limit>
-    <lookup>Entrada Tabla</lookup>
+    <lookup>max_dim_pasajero_ultima_actualizacion</lookup>
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
@@ -679,7 +890,7 @@ WHERE ultima_actualizacion > ?
         <name>NOMBRE</name>
         <length>20</length>
         <precision>-1</precision>
-        <origin>Entrada Tabla 2</origin>
+        <origin>pasajero</origin>
         <comments>NOMBRE</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -692,7 +903,7 @@ WHERE ultima_actualizacion > ?
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_ES</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -702,7 +913,7 @@ WHERE ultima_actualizacion > ?
         <name>APELLIDO</name>
         <length>25</length>
         <precision>-1</precision>
-        <origin>Entrada Tabla 2</origin>
+        <origin>pasajero</origin>
         <comments>APELLIDO</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -715,7 +926,7 @@ WHERE ultima_actualizacion > ?
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_ES</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -725,7 +936,7 @@ WHERE ultima_actualizacion > ?
         <name>DNI</name>
         <length>9</length>
         <precision>-1</precision>
-        <origin>Entrada Tabla 2</origin>
+        <origin>pasajero</origin>
         <comments>DNI</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -738,7 +949,7 @@ WHERE ultima_actualizacion > ?
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_ES</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -748,7 +959,7 @@ WHERE ultima_actualizacion > ?
         <name>ULTIMA_ACTUALIZACION</name>
         <length>0</length>
         <precision>-1</precision>
-        <origin>Entrada Tabla 2</origin>
+        <origin>pasajero</origin>
         <comments>ULTIMA_ACTUALIZACION</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -761,7 +972,7 @@ WHERE ultima_actualizacion > ?
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_ES</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -771,7 +982,7 @@ WHERE ultima_actualizacion > ?
         <name>OCUPACION</name>
         <length>50</length>
         <precision>-1</precision>
-        <origin>Entrada Tabla 2</origin>
+        <origin>pasajero</origin>
         <comments>OCUPACION</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -784,7 +995,7 @@ WHERE ultima_actualizacion > ?
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_ES</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -794,7 +1005,7 @@ WHERE ultima_actualizacion > ?
         <name>GENERO</name>
         <length>20</length>
         <precision>-1</precision>
-        <origin>Entrada Tabla 2</origin>
+        <origin>pasajero</origin>
         <comments>GENERO</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -807,7 +1018,7 @@ WHERE ultima_actualizacion > ?
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_ES</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -817,7 +1028,7 @@ WHERE ultima_actualizacion > ?
         <name>FECHA_NACIMIENTO</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>Entrada Tabla 2</origin>
+        <origin>pasajero</origin>
         <comments>FECHA_NACIMIENTO</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -830,7 +1041,7 @@ WHERE ultima_actualizacion > ?
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_ES</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -844,8 +1055,41 @@ WHERE ultima_actualizacion > ?
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
-      <yloc>192</yloc>
+      <xloc>352</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Fecha actual</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <formula>
+      <field_name>AÑO_ACTUAL</field_name>
+      <formula_string>TODAY()</formula_string>
+      <value_type>Date</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -922,147 +1166,8 @@ WHERE ultima_actualizacion > ?
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Calculadora</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>AÑO</field_name>
-      <calc_type>DATE_DIFF</calc_type>
-      <field_a>AÑO_ACTUAL</field_a>
-      <field_b>FECHA_NACIMIENTO</field_b>
-      <field_c/>
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>DIAS</field_name>
-      <calc_type>CONSTANT</calc_type>
-      <field_a>365</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>EDAD</field_name>
-      <calc_type>DIVIDE</calc_type>
-      <field_a>AÑO</field_a>
-      <field_b>DIAS</field_b>
-      <field_c/>
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Formula</name>
-    <type>Formula</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <formula>
-      <field_name>AÑO_ACTUAL</field_name>
-      <formula_string>TODAY()</formula_string>
-      <value_type>Date</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Añadir secuencia</name>
-    <type>Sequence</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <valuename>key_valor</valuename>
-    <use_database>N</use_database>
-    <connection/>
-    <schema/>
-    <seqname>SEQ_</seqname>
-    <use_counter>Y</use_counter>
-    <counter_name/>
-    <start_at>0</start_at>
-    <increment_by>1</increment_by>
-    <max_value>999999999</max_value>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>48</yloc>
+      <xloc>352</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

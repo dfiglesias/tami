@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Renfe_dim_time</name>
+    <name>transformacion_time</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -434,6 +435,69 @@
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>Generar</note>
+      <xloc>144</xloc>
+      <yloc>304</yloc>
+      <width>52</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Transformación</note>
+      <xloc>272</xloc>
+      <yloc>304</yloc>
+      <width>92</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Carga</note>
+      <xloc>816</xloc>
+      <yloc>304</yloc>
+      <width>42</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <connection>
     <name>renfe_dimensiones</name>
@@ -502,7 +566,7 @@
     </hop>
     <hop>
       <from>Secuencia Horas</from>
-      <to>Valor JavaScript modificado</to>
+      <to>Calcular 12 horas</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -512,31 +576,31 @@
     </hop>
     <hop>
       <from>Secuencia minutos</from>
-      <to>Juntar filas (producto cartesiano)</to>
+      <to>Juntar filas</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Juntar filas (producto cartesiano)</from>
-      <to>Valor JavaScript modificado 2</to>
+      <from>Juntar filas</from>
+      <to>Calcular tiempo</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Valor JavaScript modificado</from>
-      <to>Selecciona/Renombra valores</to>
+      <from>Calcular 12 horas</from>
+      <to>Cambiar nombre</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Selecciona/Renombra valores</from>
-      <to>Juntar filas (producto cartesiano)</to>
+      <from>Cambiar nombre</from>
+      <to>Juntar filas</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Valor JavaScript modificado 2</from>
-      <to>Selecciona/Renombra valores 2</to>
+      <from>Calcular tiempo</from>
+      <to>Cambiar nombre 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Selecciona/Renombra valores 2</from>
+      <from>Cambiar nombre 2</from>
       <to>Salida Tabla dim_time</to>
       <enabled>Y</enabled>
     </hop>
@@ -630,7 +694,7 @@
     </GUI>
   </step>
   <step>
-    <name>Juntar filas (producto cartesiano)</name>
+    <name>Juntar filas</name>
     <type>JoinRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -661,7 +725,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
+      <xloc>496</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
@@ -729,8 +793,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>784</xloc>
-      <yloc>256</yloc>
+      <xloc>832</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -805,7 +869,7 @@
     </GUI>
   </step>
   <step>
-    <name>Selecciona/Renombra valores</name>
+    <name>Cambiar nombre</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -844,13 +908,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>128</yloc>
+      <xloc>496</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Selecciona/Renombra valores 2</name>
+    <name>Cambiar nombre 2</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -889,13 +953,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>720</xloc>
-      <yloc>160</yloc>
+      <xloc>704</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Valor JavaScript modificado</name>
+    <name>Calcular 12 horas</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>N</distribute>
@@ -943,13 +1007,13 @@ var am_pm = (hours >= 12 ? 'PM' : 'AM')</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>400</xloc>
-      <yloc>64</yloc>
+      <xloc>384</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Valor JavaScript modificado 2</name>
+    <name>Calcular tiempo</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -1006,8 +1070,8 @@ var time_key = (hours.getInteger()&lt;10?"0":"")
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>144</yloc>
+      <xloc>592</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
